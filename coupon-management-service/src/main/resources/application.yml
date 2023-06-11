@@ -1,0 +1,21 @@
+spring:
+  application:
+    name: coupons-management-service
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
+  datasource:
+    url: jdbc:mysql://${DB_HOST}:${DB_PORT}/${DB_NAME}?useSSL=false&serverTimezone=UTC
+    username: root
+    password: root
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    debug: true
+    database: mysql
+    hibernate:
+      ddl-auto: create-drop
+  rabbitmq:
+    host: ${RABBITMQ_HOST}
+    port: 5672
+    username: guest
+    password: guest

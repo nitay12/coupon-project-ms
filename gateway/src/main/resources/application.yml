@@ -1,0 +1,24 @@
+spring:
+  application:
+    name: API Gateway
+  cloud:
+    gateway:
+      routes:
+        - id: coupons-management
+          uri: ${COUPONS_MANAGEMENT_URL}
+          predicates:
+            - Path=/api/companies/**
+            - Path=/api/coupons/**
+          filters:
+            - JwtValidationFilter
+
+        - id: auth-service
+          uri: ${AUTH_SERVICE_URL}
+          predicates:
+            - Path=/api/auth/**
+server:
+  port: 8085
+eureka:
+  client:
+    service-url:
+      default-zone: ${EUREKA_SERVER_URL}
