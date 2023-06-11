@@ -7,8 +7,14 @@ spring:
         - id: coupons-management
           uri: ${COUPONS_MANAGEMENT_URL}
           predicates:
-            - Path=/api/companies/**
             - Path=/api/coupons/**
+          filters:
+            - JwtValidationFilter
+
+        - id: coupons-management
+          uri: ${COUPONS_MANAGEMENT_URL}
+          predicates:
+            - Path=/api/companies/**
           filters:
             - JwtValidationFilter
 
@@ -16,6 +22,10 @@ spring:
           uri: ${AUTH_SERVICE_URL}
           predicates:
             - Path=/api/auth/**
+        - id: auth-service
+          uri: ${AUTH_SERVICE_URL}
+          predicates:
+            - Path=/api/admin/**
 server:
   port: 8085
 eureka:
